@@ -1,0 +1,9 @@
+*.pages
+*.doc
+*.docx
+*.pdf
+.DS_Store
+material
+database/tweets.json
+database/tweets.csv
+
