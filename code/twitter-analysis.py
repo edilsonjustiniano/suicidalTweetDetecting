@@ -95,8 +95,8 @@ def tokensHasEmoji(tokens):
 ## Read the Dataset into a Panda Dataframe
 # read the data
 
-#dataset = pd.read_json('../database/tweetsTest.json', lines=True)
-dataset = pd.read_json('../database/tweets.json', lines=True)
+dataset = pd.read_json('../database/tweetsTest.json', lines=True)
+#dataset = pd.read_json('../database/tweets.json', lines=True)
 
 # load the data in a dataframe
 data = pd.DataFrame(dataset)
@@ -109,8 +109,6 @@ userTweetsDict = dict()
 
 for row in data.itertuples(index=True, name='Pandas'):
     user = getattr(row, "user")
-    print("user:: " + str(user))
-    print("USER ID: " + user["_id"]['$numberLong'])
     userId = user["_id"]['$numberLong']
     if userTweetsDict.get(userId) == None:
         tweets = list()
@@ -191,7 +189,6 @@ positiveWords = ["happy", "happiness", "enjoy", "love", "news", "live"]
 
 matrix = []
 for k, v in userTweetsDict.items():
-    print('key User ID: ' + k)
     for i in range(0, len(v)):
         tweet = v[i].get("text")
         isPositiveTweet = v[i].get("isPositiveTweet")
@@ -517,10 +514,10 @@ recall = recall_score(testTargets, predictions)
 precision = precision_score(testTargets, predictions) 
 f1Score = f1_score(testTargets, predictions)
 
-print('DTF Accuracy: {0:0.2f}'.format(accuracy))
-print('DTF Recall: {0:0.2f}'.format(recall))
-print('DTF Precision: {0:0.2f}'.format(precision))
-print('DTF F1 score: {0:0.2f}'.format(f1Score))
+print('GridSearch CV Accuracy: {0:0.2f}'.format(accuracy))
+print('GridSearch CV Recall: {0:0.2f}'.format(recall))
+print('GridSearch CV Precision: {0:0.2f}'.format(precision))
+print('GridSearch CV F1 score: {0:0.2f}'.format(f1Score))
 
 # Confusion matrix
 print(confusion_matrix(testTargets, predictions))
@@ -530,11 +527,11 @@ print(classification_report(testTargets, predictions))
 fpr, tpr, thresholds = metrics.roc_curve(testTargets, predictions)
 roc_auc = metrics.auc(fpr, tpr)
 
-print('DTF AUC FPR:')
+print('GridSearch CV AUC FPR:')
 print(fpr)
-print('DTF AUC TPR:')
+print('GridSearch CV AUC TPR:')
 print(tpr)
-print('DTF AUC Thresholds:')
+print('GridSearch CV AUC Thresholds:')
 print(thresholds)
-print('DTF AUC ROC:')
+print('GridSearch CV AUC ROC:')
 print(metrics.auc(fpr, tpr))
