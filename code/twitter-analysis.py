@@ -94,13 +94,13 @@ def tokensHasEmoji(tokens):
 
 ## Read the Dataset into a Panda Dataframe
 # read the data
+
 #dataset = pd.read_json('../database/tweetsTest.json', lines=True)
 dataset = pd.read_json('../database/tweets.json', lines=True)
 
 # load the data in a dataframe
 data = pd.DataFrame(dataset)
 data = data.dropna(subset=['user'])
-
 
 ##########################################
 # Dictionary to group the tweets by user #
