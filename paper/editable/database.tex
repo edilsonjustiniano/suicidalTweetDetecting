@@ -1,0 +1,16 @@
+\chapter{BANCO DE DADOS}
+
+A fim de implementar a ferramenta proposta por esta pesquisa, é necessário possuir um banco de dados, em algumas pesquisas o banco de dados é denominado \textit{dataset} contendo um determinado número de registros para que o algortimo utilize como base de treinamento e testes. Para moldar o \textit{dataset} necessário para esta pesquisa foi utilizada uma \textit{Application Program Interface} - API pública e aberta disponibilizada pelo próprio \textit{Twitter}. Essa API possibilita o monitoramente de menos de um por cento do total de \textit{tweets} postados em tempo real conforme \cite{natural_language_processing_mental_health}. Esses \textit{tweets} são filtrados de forma aleatória, não sendo possível definir especificamente os \textit{tweets} de uma só pessoa e levando em consideração uma série de parâmetros informados pelo usuário, parâmetros estes como: palavras chaves; expressões textuais; contendo uma imagem; entre muitas opções, segundo \citeonline{twitter_filter_realtime_doc} são até duzentos e cinquenta mil filtros possíveis.
+
+Portanto, foi desenvolvida uma aplicação simples utilizando a linguagem de programação Java em sua versão \textit{Standard Edition} SE, cuja principal atividade é o consumo desta API do \textit{Twitter} e a armazenagem dos \textit{tweets} em um banco de dados \textit{Not Only SQL} - NOSQL, para essa pesquisa o banco de dados selecionado foi o MongoDB, devido a sua simplicidade para manipular objetos no formato JSON (\textit{Javascript Object Notation}) e somada ao fato de que a API do \textit{Twitter} utiliza este formato como resposta.
+
+Para a coleta dos \textit{tweets} foram utilizados como filtro algumas expressões, são elas:
+\newline
+"suicidal"; "suicide"; "kill myself"; "my suicide note"; "my suicide letter"; "end my life"; "never wake up"; "can't go on";
+"not worth living"; "ready to jump"; "sleep forever"; "want to die"; "be dead"; "better off without me"; "better off dead"; "suicide plan"; "suicide pact"; "tired of living"; "don't want to be here"; "die alone"; "go to sleep forever"; "bullied"; "bullyng";
+
+Além é claro de \textit{tweets} com mensagens positivas, nesse caso as expressões usadas foram:
+\newline
+"be happy"; "happiness"; "enjoy the life"; "love my life"; "ready for news"; "new plans"; "vacation plan"; "be live";
+
+Para que seja possível identificar de forma simples se um determinado \textit{tweet} é positivo ou não foi utilizada uma \textit{flag} booleana para esse fim, facilitando assim o filtro por meio do MongoDB.

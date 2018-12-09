@@ -1,0 +1,77 @@
+\chapter{MODELAGEM}
+
+Para a resolução do problema cujo este trabalho se propõe a resolver é necessário um processo de modelagem sob o \textit{dataset} seja aplicado. Este processo é composto de algumas fases, conforme apresentado a seguir:
+
+\section{Pré processamento}
+
+Nesta fase é necessário realizar o agrupamento de todos os \textit{tweets}, positivos e negativos de acordo com usuário. Obtendo como resultado uma lista de \textit{tweets} de acordo com um determinado usuário. Esse processo se torna indispensável, visto que a ideia dessa pesquisa é desenvolver um modelo cujo principal objetivo é identificar que um determinado usuário possui risco de um atentado suicida ou não de acordo com seus \textit{tweets}.
+
+Após agrupar os \textit{tweets}, inicia-se o processo de manipulação dos conteúdos de cada \textit{tweet}. Para tanto, foi utilizado os seguintes processos:
+
+\subsection{Remoção de elementos HTML}
+
+O \textit{Twitter} possibilita aos seus usuários a utilização de elementos  \textit{HyperText Markup Language} - HTML nos \textit{tweets}. Portanto, é importante extrair e remover tais informações para manter apenas o que é realmente necessário, nesse caso, o conteúdo escrito pelo próprio usuário. Isso é claro, evitará processamento desnecessário e otimizará o próximo passo, a tokenização dos \textit{tweets}.
+
+\subsection{Separação em palavras \textit{Tokenização}}
+
+O processo denominado Tokenização consiste da separação de uma frase por palavras, removendo assim pontuações do texto. Portanto, como resultado do processo foi obtido um vetor de palavras. Após essa separação, é possível encontrar algumas palavras que não trazem muito valor ao contexto da frase, palavras como preposições, temos como exemplo: \textit{and}, \textit{of}, \textit{the}, \textit{to}, entre outras. A remoção desse tipo de palavras também é parte de todo o processo de tokenização.
+
+\subsection{Conversão de textos para minúsculo}
+
+A fim de simplificar o processo de análise do conteúdo de cada \textit{tweet} é necessário que todo o conteúdo do \textit{tweet} seja convertido para apenas um formato, sendo que para essa pesquisa a forma selecionada foi o \textit{lowercase}.
+
+\subsection{Substituição de siglas por termos}
+
+Sabe-se que a linguagem utilizada perante as mídias socias não são as mais coloquiais possíveis e em muitos casos, é possível encontrar várias siglas para se referenciar à algo ou alguém, para saudar alguém ou apenas por comodidade. Portando, é necessário que esse algoritmo avalie estas siglas e substitua por valores completos e coerentes ao conteúdo do \textit{tweet}.
+
+\subsection{Extração de termos com \textit{hashtags}}
+
+Um dos caracteres mais utilizados por usuários de mídias socias é o "\#" (\textit{hashtag}), pois ele é utilizado para enfatizar a ideia do \textit{post}. Por esta razão, extrair estas informações se torna muito relevante para a análise do \textit{tweet}, pois ele pode identificar uma possível ironia auxiliando no processo de classificação deste \textit{tweet}.
+
+\section{\textit{Stemming} e \textit{Lemmatization}}
+
+O processo de \textit{stemming} é usado para agrupar as palavras que possuem uma mesma origem, reduzindo a matriz de palavras extraídas pelo processo de \textit{tokenização}, conforme \cite[p.24]{development_of_stemming_algorithm}
+
+\begin{citacao}
+	\textit{"A stemming algorithm is a computational procedure which reduces all words with the same root (or, if prefixes are left untouched, the same stem) to a common form, usually by stripping each word of its derivational and inflectional suffixes."}
+\end{citacao}
+
+Portanto, esse processo auxilia na redução da matriz de palavras, uma vez que cada palavra pode pssuir diferentes formas e este processo almeja a identificação da forma mais próxima destas plavras, também conhecida como a forma mais genérica do termo, conforme \cite{influence_of_word_normalization_on_text_classification}. 
+
+Outro processo muito útil na normalização dos termos é o \textit{Lemmatization} cujo o resultado obtido desse processo é o termo sem seu sufixo ou com outro segundo \cite{influence_of_word_normalization_on_text_classification}.
+
+\subsection{Extração de \textit{emojis}}
+
+Outro recurso muito utilizado nos dias atuais por usuários de mídias socias são os \textit{emojis}, por meio deles é possível identificar os sentimentos descritos pelo \textit{tweet}. Por esta razão, a extração deste recurso dos \textit{tweets} se fazem necessário, visto que eles trazem uma informação riquíssima a esta análise. Inclusive este recurso, foi imensamente importante a esta pesquisa, pois, através destes, foi realizada a análise de irônias nos \textit{tweets}, sendo assim: um \textit{tweet} proveniente da lista de palavras positivas e que possua ao menos um \textit{emoji}, cujo o mesmo pertença a uma lista de \textit{emojis} pré selecionado que emita algum sentimento de tristeza é identificado como uma ironia auxiliando na construção do modelo. O mesmo ocorre para \textit{tweets} provenientes da lista de palavras negativas.
+
+\subsection{Representação}
+
+Após todo o pré processamento conforme detalhado nas sub seções anteriores, o modelo preditivo final se baseia em uma representação binária do \textit{tweet} em um vetor de pares atributo-valor, onde os atributos são os tokens previamente definidos pela \textit{tokenização}, e seus valores podem são frequências binárias de palavras (caracteristicas) do modelo preditivo. Além desses \textit{tokens}, mais duas características foram adicionadas ao modelo, são elas: \textit{"hasEmoji"} e \textit{"isIronic"}. 
+
+\subsection{Eliminação de características menos relevante}
+
+A fim de reduzir a dimensionalidade do problema, foi utilizado uma função para avaliar quais as características são menos relevantes e assim remove-las reduzindo a dimensão do problema e consequentemente melhorando a performance do modelo e evitando possíveis problemas, tais como \textit{overfitting}. A função escolhida para este problema foi a PCA, segundo \citeonline{scikit_learn_pca}  essa função realiza a redução de características baseada no valor que uma determinada característica exerce sobre o problema.
+
+\section{Modelo preditivo}
+
+A fim de indentificar a possibilidade de um determinado \textit{tweet} ser suicida ou não, nesta pesquisa foi utilizado um método de classificação supervisionada, utilizando como entrada os próprios \textit{tweets} coletados, pré processados e rotuladosn(classificados) de acordo com as regras pré estabelecidas e descritas anteriormente. Essa abordagem foi necessária, pois, não tinhamos os recursos necessários para utilizar uma abordagem semi-supervisionada, visto que seu custo de implementação é alto. Para a utilização de tal abordagem precisariamos dispor de tempo e uma equipe de psicólogos para avaliar cada \textit{tweet} coletado para a geração do \textit{dataset} inicial o que seria extremamente custoso.
+
+Para evitar essa abordagem de classificação manual, altamente custosa, foi desenvolvido uma aplicação utilizando \textit{Python} para classificar esses \textit{tweets} de forma automática, levando em consideração algumas regras, tais como, \textit{tweets} cuja finalidade não seja uma resposta a outro \textit{tweet}, contenham determinadas palavras (após todo o pré processamento) e que não possua ironias, baseando-se no uso de \textit{emoticons}.
+
+Portanto, como entrada para o nosso modelo preditivo supervisionado, o mesmo \textit{dataset} coletado inicialmente foi utilizado, porém, os registros já haviam sido pré processados e rotulados, permitindo assim a utilização da abordagem de métodos supervisionados.
+
+Como modelo final temos a seguinte estrutura de características:
+
+\begin{table}[H]
+	\caption{Modelo preditivo}
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+		\hline
+		\textbf{User} & \rotatebox{90}{\textbf{suicidal}} & \rotatebox{90}{\textbf{suicide}} & \rotatebox{90}{\textbf{kill}} & \rotatebox{90}{\textbf{myself}} & \rotatebox{90}{\textbf{end}} & \rotatebox{90}{\textbf{die}} & \rotatebox{90}{\textbf{dead}} & \rotatebox{90}{\textbf{bullied}} & \rotatebox{90}{\textbf{bullyng}} & \rotatebox{90}{\textbf{happy}} & \rotatebox{90}{\textbf{happiness}} & \rotatebox{90}{\textbf{enjoy}} & \rotatebox{90}{\textbf{love}} & \rotatebox{90}{\textbf{news}} & \rotatebox{90}{\textbf{live}} & \rotatebox{90}{\textbf{hasEmoji}} & \rotatebox{90}{\textbf{isIronic}} & \rotatebox{90}{\textbf{isSuicidal}}\\ \hline
+		123456        & 0                 & 0                & 0             & 0               & 0            & 0            & 0             & 0                & 0                & 1              & 0                  & 0              & 1             & 0             & 0             & 1                 & 0                 & 0                   \\ \hline
+		654321        & 0                 & 1                & 1             & 1               & 0            & 1            & 0             & 0                & 1                & 0              & 0                  & 0              & 0             & 0             & 0             & 0                 & 0                 & 1                   \\ \hline
+		09876         & 1                 & 0                & 0             & 0               & 1            & 0            & 0             & 0                & 0                & 0              & 0                  & 0              & 0             & 0             & 1             & 1                 & 1                 & 0                   \\ \hline
+		67890         & 0                 & 0                & 0             & 1               & 1            & 0            & 0             & 0                & 0                & 0              & 0                  & 0              & 1             & 0             & 1             & 0                 & 1                 & 1                   \\ \hline
+	\end{tabular}
+\end{table}
+
+Esta é a representação gráfica de alguns registros utilizados para a geração de um data frame.

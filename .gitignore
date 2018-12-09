@@ -7,3 +7,19 @@ material
 database/tweets.json
 database/tweets.csv
 
+# Paper
+paper/tmp
+paper/out
+paper/old
+paper/main.bbl
+paper/main.blg
+paper/main.lof
+paper/main.lol
+paper/main.aux
+paper/main.lot
+paper/main.toc
+paper/main.pdf
+paper/main.synctex.gz
+paper/main.log
+.idea
+.gradle
