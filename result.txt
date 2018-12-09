@@ -1,0 +1,184 @@
+Essemble Prediction Accuracy: 0.87
+Essemble Prediction Recall: 0.41
+Essemble Prediction Precision: 0.92
+Essemble Prediction F1 score: 0.57
+[[78089   761]
+ [12643  8870]]
+             precision    recall  f1-score   support
+
+          0       0.86      0.99      0.92     78850
+          1       0.92      0.41      0.57     21513
+
+avg / total       0.87      0.87      0.85    100363
+
+
+Essemble AUC FPR:
+[0.         0.00965124 1.        ]
+Essemble AUC TPR:
+[0.         0.41230884 1.        ]
+Essemble AUC Thresholds:
+[2 1 0]
+Essemble AUC ROC:
+0.7013287999962035
+
+
+
+
+
+
+
+
+SVM Accuracy cross validation: 0.86
+SVM Accuracy: 0.86
+SVM Recall: 0.42
+SVM Precision: 0.89
+SVM F1 score: 0.57
+[[77700  1150]
+ [12584  8929]]
+             precision    recall  f1-score   support
+
+          0       0.86      0.99      0.92     78850
+          1       0.89      0.42      0.57     21513
+
+avg / total       0.87      0.86      0.84    100363
+
+
+SVM AUC FPR:
+[0.         0.01458465 1.        ]
+SVM AUC TPR:
+[0.         0.41505136 1.        ]
+SVM AUC Thresholds:
+[2 1 0]
+SVM AUC ROC:
+0.7002333549421282
+
+Tree Prediction Accuracy: 0.87
+Tree Prediction Recall: 0.41
+Tree Prediction Precision: 0.93
+Tree Prediction F1 score: 0.57
+[[78189   661]
+ [12665  8848]]
+             precision    recall  f1-score   support
+
+          0       0.86      0.99      0.92     78850
+          1       0.93      0.41      0.57     21513
+
+avg / total       0.88      0.87      0.85    100363
+
+
+Tree AUC FPR:
+[0.         0.00838301 1.        ]
+Tree AUC TPR:
+[0.        0.4112862 1.       ]
+Tree AUC Thresholds:
+[2 1 0]
+Tree AUC ROC:
+0.7014515966677004
+
+Random Forest Prediction Accuracy: 0.87
+Random Forest Prediction Recall: 0.41
+Random Forest Prediction Precision: 0.93
+Random Forest Prediction F1 score: 0.57
+[[78187   663]
+ [12661  8852]]
+             precision    recall  f1-score   support
+
+          0       0.86      0.99      0.92     78850
+          1       0.93      0.41      0.57     21513
+
+avg / total       0.88      0.87      0.85    100363
+
+
+Random Forest AUC FPR:
+[0.         0.00840837 1.        ]
+Random Forest AUC TPR:
+[0.         0.41147213 1.        ]
+Random Forest AUC Thresholds:
+[2 1 0]
+Random Forest AUC ROC:
+0.7015318814027035
+
+Neural Network Prediction Accuracy: 0.87
+Neural Network Prediction Recall: 0.41
+Neural Network Prediction Precision: 0.93
+Neural Network Prediction F1 score: 0.57
+[[78157   693]
+ [12637  8876]]
+             precision    recall  f1-score   support
+
+          0       0.86      0.99      0.92     78850
+          1       0.93      0.41      0.57     21513
+
+avg / total       0.88      0.87      0.85    100363
+
+
+Neural Network AUC FPR:
+[0.         0.00878884 1.        ]
+Neural Network AUC TPR:
+[0.         0.41258774 1.        ]
+Neural Network AUC Thresholds:
+[2 1 0]
+Neural Network AUC ROC:
+0.7018994490391014
+
+GaussianNB Accuracy: 0.86
+GaussianNB Recall: 0.42
+GaussianNB Precision: 0.85
+GaussianNB F1 score: 0.56
+[[77211  1639]
+ [12517  8996]]
+             precision    recall  f1-score   support
+
+          0       0.86      0.98      0.92     78850
+          1       0.85      0.42      0.56     21513
+
+avg / total       0.86      0.86      0.84    100363
+
+
+GaussianNB AUC FPR:
+[0.        0.0207863 1.       ]
+GaussianNB AUC TPR:
+[0.         0.41816576 1.        ]
+GaussianNB AUC Thresholds:
+[2 1 0]
+GaussianNB AUC ROC:
+0.698689728565415
+
+GridSearch CV Accuracy: 0.87
+GridSearch CV Recall: 0.41
+GridSearch CV Precision: 0.93
+GridSearch CV F1 score: 0.57
+[[78188   662]
+ [12659  8854]]
+             precision    recall  f1-score   support
+
+          0       0.86      0.99      0.92     78850
+          1       0.93      0.41      0.57     21513
+
+avg / total       0.88      0.87      0.85    100363
+
+
+GridSearch CV AUC FPR:
+[0.         0.00839569 1.        ]
+GridSearch CV AUC TPR:
+[0.        0.4115651 1.       ]
+GridSearch CV AUC Thresholds:
+[2 1 0]
+GridSearch CV AUC ROC:
+0.7015847060783852
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 
+Edilsons-MacBook-Pro:code edilsonjustiniano$ 

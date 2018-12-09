@@ -208,6 +208,7 @@ happinessEmojis = ['😀', '😁', '😂', '🤣', '😃', '😄', '😅', '😆
 sadnessEmojis = ['🤔', '🤨', '😐', '😑', '😶', '🙄', '😣', '😥', '😮', '🤐', '😯', '😪', '😫', '😓', '😔', '😕', '🙃', '☹️', '🙁', '😖', '😞', '😟', '😤', '😢', '😭', '😦', '😧', '😨', '😩', '😰', '😱']
 
 matrix = []
+count = 0
 for k, v in userTweetsDict.items():
     for i in range(0, len(v)):
         tweet = v[i].get("text")
@@ -270,12 +271,14 @@ for k, v in userTweetsDict.items():
                 #    vector.append(1)
                 
             matrix.append(vector)
-            print("Vector: " + str(vector))
+            #print("Vector: " + str(vector))
             #for token in tokens:
             #    result = lemmer.lemmatize(token)
             #    token = result
             #    print(result)
-    print("Matrix: " + str(matrix))
+    count += 1
+    print(count)
+    #print("Matrix: " + str(matrix))
 
 ######################################################
 ## Re-create the Panda Dataframe only with the data ##
@@ -319,13 +322,14 @@ to_drop = [column for column in upper.columns if any(upper[column] > 0.75)]
 dataFiltered = dataFrame.drop(dataFrame.columns[to_drop], axis=1)
 dataFiltered['target'] = targetValues
 
-print("Data frame re-mounted after PCA...\n")
+#print("Data frame re-mounted after PCA...\n")
 
 ##########################
 ## Let's train our model #
 ##########################
 print("Let`s train the data")
 dataTrain, dataTest = train_test_split(dataFiltered, test_size=0.2)
+print("Data splited successfully")
 # create an cross validation model
 seed = 7
 kfold = model_selection.KFold(n_splits=7, random_state=seed)
@@ -333,22 +337,27 @@ kfold = model_selection.KFold(n_splits=7, random_state=seed)
 ##########################
 ## Split the TRAIN DATA ##
 ##########################
+print("Split the train data...")
 nColumns = dataTrain.shape[1] - 1
 trainValues = dataTrain.values
 trainFeatures = trainValues[:,0:nColumns-1]
 trainTargets = trainValues[:,nColumns]
+print("train data successfully splited")
 
 #########################
 ## Split the TEST DATA ##
 #########################
+print("Split the test data...")
 nColumns = dataTest.shape[1] - 1
 testValues = dataTest.values
 testFeatures = testValues[:,0:nColumns-1]
 testTargets = testValues[:,nColumns]
+print("test data successfully splited")
 
 #############################
 ## ENSEMBLE CLASSIFICATION ##
 #############################
+print("Create the ensemble...")
 estimators = []
 model1 = LogisticRegression()
 estimators.append(('logistic', model1))
@@ -359,7 +368,9 @@ estimators.append(('svm', model3))
 
 # create the ensemble
 ensemble = VotingClassifier(estimators)
+print("lets train the essemble...")
 ensemble.fit(trainFeatures, trainTargets)
+print("lets check the results by cross validation...")
 results = model_selection.cross_val_score(ensemble, trainFeatures, trainTargets, cv=kfold)
 print('Essemble Accuracy: {0:0.2f}'.format(results.mean()))
 
